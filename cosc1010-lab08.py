@@ -1,8 +1,8 @@
-# Your Name Here
+# Jack Zweibelson
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section:
+# Submission Date: 11/6/2024
+# Lab 8
+# Lab Section:15
 # Sources, people worked with, help given to:
 # your
 # comments
@@ -14,6 +14,14 @@
 # Other wise return the converted int or float 
 # Floats should only have one decimal point in them 
 
+
+
+def check(vari):
+    if vari == " ":
+        return None
+    if "." in vari:
+        return float(vari)
+    return int(vari)
 
 print("*" * 75)
 
@@ -38,8 +46,51 @@ print("*" * 75)
 # Remember all inputs are strings, but the function needs ints or floats
 # Call your function and print the resulting list
 
-print("*" * 75)
 
+while True:
+    m = ""
+    b = ""
+    lx = ""
+    ux = ""
+    c = 0
+    inp = input("Please input integers for each variable with commas inbetween m,b,lx,ux: ")
+    if inp.lower().strip() == "exit":
+        break
+    for i in inp:
+        if i.isdigit() or i == "." or i == "-":
+            if c == 0:
+                m += i
+            if c == 1:
+                b += i
+            if c == 2:
+                lx += i
+            if c == 3:
+                ux += i
+        elif i == ",":
+            c += 1
+    else:
+        if lx == ux or lx > ux:
+            print("incorrect range")
+            continue
+
+        m = check(m)
+        b = check(b)
+        if "." in lx:
+            print("Range cannot be float")
+            continue 
+        lx = check(lx)
+        if not ux.isdigit():
+            print("Range cannot be float")
+            continue 
+        ux = check(ux)        
+
+
+        for i in range(lx, ux + 1):
+            y = i*m +b
+            print(f'x:{i} : y:{y}')
+
+
+print("*" * 75)
 
 # Write a function to solve the quadratic formula
 # https://en.wikipedia.org/wiki/Quadratic_formula
@@ -48,3 +99,36 @@ print("*" * 75)
 # Create a loop like above to prompt the user for input for the three values
 # Create a second function that just does the square root operation 
     # If the number you are trying to take the square root of is negative, return null
+
+while True:
+    a = ""
+    b = ""
+    c = ""
+    x = 0
+    inp = input("Please input integers for each variable with commas inbetween a,b,c: ")
+    if inp.lower().strip() == "exit":
+        break    
+    for i in inp:
+        if i.isdigit() or i == "." or i == "-":
+            if x == 0:
+                a += i
+            if x == 1:
+                b += i
+            if x == 2:
+                c += i
+        elif i == ",":
+            x += 1
+    else:
+        a = check(a)
+        b = check(b)
+        c = check(c)
+
+        f = (b**2)-4*a*c
+        if f > 0:
+            print((-b+(f**.5))/(2*a))
+            print((-b-(f**.5))/(2*a))
+        else:
+            print("0") 
+
+
+
